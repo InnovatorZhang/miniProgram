@@ -1,0 +1,6 @@
+/* pages/register/register.wxss */
+.designbymyself{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

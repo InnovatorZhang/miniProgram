@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/partRead/articleList/articleList",
+    "pages/partRead/article/article",
+    "pages/partFirst/login/login",
+    "pages/index/index",
+    "pages/partFirst/register/register"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "demo",
+    "navigationBarTextStyle": "black"
+  }
+}
