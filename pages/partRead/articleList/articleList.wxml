@@ -1,2 +1,15 @@
 <!--pages/partRead/articleList/articleList.wxml-->
-<text>pages/partRead/articleList/articleList.wxml</text>
+
+<scroll-view bindscrolltolower="lower" scroll-y style="height:603px;" scroll-top="{{scrollTop}}">
+  <block wx:for-items="{{articles}}" wx:key="{{item.author}}">
+    <view class="kind-list__item" >
+      <navigator url="../article/article?articleId={{item.id}}">
+        <view id="{{item.author}}" class="weui-flex kind-list__item-hd">
+          <view>{{item.title}}</view>
+          <view class="weui-flex__item">{{item.author}}</view>
+          <image class="kind-list__img" src="{{item.avatar}}"></image>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</scroll-view>

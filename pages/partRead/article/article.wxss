@@ -5,3 +5,13 @@ page{
 image{
     margin: 4px 0;
 }
+
+.kind-list__img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px
+}
+.author-Information{
+  display: flex;
+  flex-direction: row;
+}
