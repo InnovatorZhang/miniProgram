@@ -34,6 +34,7 @@ Page({
     var that = this;
     wx.request({
       url: 'http://localhost/php4homework/information/getInformation.php',
+      // url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       method: 'POST',
       data: {
         "type": 2,

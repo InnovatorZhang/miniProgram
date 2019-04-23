@@ -16,6 +16,7 @@ Page({
     var offset = this.data.offset;
     var limit = this.data.limit;
     var token = app.globalData.token;
+    console.log(app.globalData.token);
     this.getArticlesList(offset, limit, token);
   },
 
@@ -50,7 +51,8 @@ Page({
   getArticlesList(offset,limit,token){
     var that = this;
     wx.request({
-      url: 'http://localhost/php4homework/information/getInformation.php',
+      url: 'http://localhost/php4Homework/information/getInformation.php',
+      //url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       method: 'POST',
       data: {
         "type": 1,
