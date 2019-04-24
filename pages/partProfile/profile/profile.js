@@ -40,7 +40,6 @@ Page({
     ]
   },
   onLoad(options) {
-    console.log('success')
     this.setData({ avatar: app.globalData.avatar, userName: app.globalData.userName})
   },
   logout(){
@@ -51,7 +50,7 @@ Page({
       duration: 1000
     })
     try {
-      wx.clearStorageSync();
+      wx.removeStorageSync('userInfo');
     } catch (e) {
       console('GG');
     }

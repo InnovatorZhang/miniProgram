@@ -2,6 +2,7 @@
 //没有token的话就跳转到登陆界面
 App({
   onLaunch: function () {
+
     var userInfo = wx.getStorageSync('userInfo');
     //如果磁盘中有数据则进入主页面，若没有数据则登陆
     if (userInfo){
@@ -9,18 +10,19 @@ App({
       this.globalData.userName = userInfo.username;
       this.globalData.password = userInfo.password;
       this.globalData.avatar = userInfo.avatar;
-      this.globalData.gender = userInfo.sex;
+      this.globalData.gender = userInfo.gender;
       this.globalData.token = userInfo.token;
     }else{
       console.log('需要登陆');
+      //有时候跳转不了
       wx.redirectTo({
         url: '/pages/partFirst/login/login',
-      })
+      });
     }
     
   },
   globalData: {
-    userName: '默认名字',
+    userName: '请登录',
     password: 'morenmima',
     avatar:'http://127.0.0.1/php4Homework/avatar/default.png',
     gender:1,

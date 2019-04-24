@@ -63,7 +63,12 @@ Page({
         }
       },
       success: function (res) {
-        that.setData({ articles: res.data.content.data });
+        if (res.data.ErrorCode == 0){
+          that.setData({ articles: res.data.content.data });
+        }else{
+          console.log('请求失败');
+        }
+        
       }
     })
   }

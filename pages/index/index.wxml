@@ -1,1 +1,3 @@
-<view>这里是主页面</view>
+<button class="weui-btn" type="primary" plain="true" disabled="{{isDisabled}}" bindtap="punchsign">打卡签到</button>
+<text>签到次数：{{punchsignTimes}}</text>
+<button class="weui-btn" type="primary" plain="true" disabled="{{isDisabled}}" bindtap="photoPunchsign">自拍打卡</button>
