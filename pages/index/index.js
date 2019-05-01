@@ -11,11 +11,17 @@ Page({
    *
    */
   onLoad: function(options) {
+    var that = this;
     //检查是否签到了，签过则将按钮不可用
     this.isPunchsigned();
     //获取签到次数
     var token = app.globalData.token;
     this.getPunchsignTimes(token);
+    //修改服务器中用户头像地址,这里等待一秒，因为要等待异步获取的头像地址
+    setTimeout(function(){
+      that.modifyUserAvatar(app.globalData.avatar);
+      console.log(app.globalData.avatar);
+    },1000)
   },
 
   /**
@@ -143,5 +149,25 @@ Page({
         isDisabled: true
       });
     }
-  }
+  },
+/**
+ * 修改用户头像地址
+ */
+  modifyUserAvatar(avatarUrl) {
+    var that = this;
+    wx.request({
+      url: 'http://127.0.0.1/php4Homework/modify/avatar/index.php',
+      method: 'POST',
+      data: {
+        "type": 0,
+        "content": {
+          "avatarUrl": avatarUrl,
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          console.log('头像已修改');
+        }
+      }
+    })
+  },
 })
