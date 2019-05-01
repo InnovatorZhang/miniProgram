@@ -113,7 +113,7 @@ Page({
           app.globalData.password = password;
           app.globalData.gender = res.data.content.data.gender;
           app.globalData.token = res.data.content.data.token;
-          app.globalData.avatar = res.data.content.data.avatar;
+          //app.globalData.avatar = res.data.content.data.avatar;
 
           //将用户名和密码和token等信息保存到磁盘中,key值为userInfo
           wx.setStorageSync('userInfo', res.data.content.data);

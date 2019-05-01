@@ -50,7 +50,8 @@ Page({
       duration: 1000
     })
     try {
-      wx.removeStorageSync('userInfo');
+      // wx.removeStorageSync('userInfo');
+      wx.clearStorage();
     } catch (e) {
       console('GG');
     }
