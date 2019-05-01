@@ -20,7 +20,6 @@ Page({
     //修改服务器中用户头像地址,这里等待一秒，因为要等待异步获取的头像地址
     setTimeout(function(){
       that.modifyUserAvatar(app.globalData.avatar);
-      console.log(app.globalData.avatar);
     },1000)
   },
 
@@ -74,7 +73,7 @@ Page({
   punchsignToServer(token) {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/php4Homework/punchsign/index.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/punchsign/index.php',
       method: 'POST',
       data: {
         "type": 0,
@@ -113,7 +112,7 @@ Page({
   getPunchsignTimes(token) {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/php4Homework/punchsign/index.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/punchsign/index.php',
       method: 'POST',
       data: {
         "type": 1,
@@ -156,7 +155,7 @@ Page({
   modifyUserAvatar(avatarUrl) {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1/php4Homework/modify/avatar/index.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/modify/avatar/index.php',
       method: 'POST',
       data: {
         "type": 0,

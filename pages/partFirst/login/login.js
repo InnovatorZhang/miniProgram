@@ -96,7 +96,7 @@ Page({
     var that = this;
     //跳转到主页，这里存放网路请求验证和跳转的逻辑,如果登陆失败则makeAToast()
     wx.request({
-       url: 'http://127.0.0.1/php4Homework/login/index.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/login/index.php',
       //url: 'http://120.77.212.41/MYHTML/php4Homework/login/index.php',
       method: 'POST',
       data: {

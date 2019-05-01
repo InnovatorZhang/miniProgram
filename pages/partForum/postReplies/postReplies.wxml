@@ -1,0 +1,13 @@
+<!--pages/partRead/articleList/articleList.wxml-->
+
+
+  <block wx:for-items="{{replies}}" wx:key="{{item.username}}">
+    <view class="kind-list__item" >
+        <view id="{{item.username}}" class=" kind-list__item-hd">
+          <image class="kind-list__img" src="{{item.avatar}}"></image>
+          <view class="weui-flex__item"><text class='item_userName'>{{item.username}}</text></view>
+          <view class='item_title'>{{item.content}}</view>
+        </view>
+    </view>
+  </block>
+

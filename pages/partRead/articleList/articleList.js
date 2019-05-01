@@ -16,7 +16,6 @@ Page({
     var offset = this.data.offset;
     var limit = this.data.limit;
     var token = app.globalData.token;
-    console.log(app.globalData.token);
     this.getArticlesList(offset, limit, token);
   },
 
@@ -42,7 +41,27 @@ Page({
     },1000)
     
   },
-
+  // /**
+  //  * 页面上拉触底事件的处理函数
+  //  */
+  // onReachBottom: function () {
+  //   var newOffset = this.data.offset + 20;
+  //   var limit = this.data.limit;
+  //   var that = this;
+  //   var token = app.globalData.token;
+  //   this.setData({offset:newOffset})
+  //   this.getArticlesList(newOffset,limit,token);
+  //   wx.showToast({
+  //     title: '正在加载数据...',
+  //     icon: 'loading',
+  //     mask: true,
+  //     duration: 1500
+  //   });
+  //   //一秒后返回顶部
+  //   setTimeout(function(){
+  //     that.setData({ scrollTop: 0 })
+  //   },1000)
+  // },
 
 
   /**
@@ -51,7 +70,7 @@ Page({
   getArticlesList(offset,limit,token){
     var that = this;
     wx.request({
-      url: 'http://localhost/php4Homework/information/getInformation.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       //url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       method: 'POST',
       data: {

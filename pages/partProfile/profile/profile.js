@@ -2,7 +2,7 @@
 const app = getApp();
 Page({
   data: {
-    avatar:'http://127.0.0.1/php4Homework/avatar/default.png',
+    avatar:'http://120.77.212.41/MYHTML/php4Homework/avatar/default.png',
     userName:'默认名字',
     items: [
       {

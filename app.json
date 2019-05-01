@@ -6,7 +6,8 @@
     "pages/partRead/articleList/articleList",
     "pages/partRead/article/article",
     "pages/partProfile/profile/profile",
-    "pages/partForum/discussionList/discussionList"
+    "pages/partForum/postList/postList",
+    "pages/partForum/postReplies/postReplies"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +28,7 @@
       "selectedIconPath": "/assets/images/icon_nav_widget.png"
     },
     {
-      "pagePath": "pages/partForum/discussionList/discussionList",
+      "pagePath": "pages/partForum/postList/postList",
       "text": "讨论区",
       "iconPath": "/assets/images/iconfont-weixin.png",
       "selectedIconPath": "/assets/images/iconfont-weixin.png"

@@ -42,7 +42,7 @@ App({
   globalData: {
     userName: '请登录',
     password: 'morenmima',
-    avatar:'http://127.0.0.1/php4Homework/avatar/default.png',
+    avatar:'http://120.77.212.41/MYHTML/php4Homework/avatar/default.png',
     gender:1,
     token: "658ba7e7314267075967da52e7ca2e0a55875890"
   }

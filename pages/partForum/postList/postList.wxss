@@ -1,0 +1,67 @@
+/* pages/partForum/postList/postList.wxss */
+.weui-flex {
+}
+
+.kind-list__item {
+  margin: 10px 0;
+  background-color: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.kind-list__item:first-child {
+  margin-top: 0;
+}
+
+.kind-list__img {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.kind-list__item-hd {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.kind-list__item-bd {
+}
+
+.weui-flex__item {
+  display: block;
+  overflow: hidden;
+  color: darkgray;
+  font-size: 20rpx;
+  text-align: center;
+  width: 40px;
+}
+.item_vertical{
+}
+
+.item_title{
+  font-size: 45rpx;
+}
+
+.item_post{
+  color: rgb(90, 83, 83);
+  font-size: 35rpx;
+}
+.item_left{
+}
+.item_right{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px;
+}

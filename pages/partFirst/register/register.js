@@ -65,7 +65,7 @@ Page({
    */
   register(userName, password) {
     wx.request({
-       url: 'http://127.0.0.1/php4Homework/register/index.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/register/index.php',
       //url:'http://120.77.212.41/MYHTML/php4Homework/register/index.php',
       method: 'POST',
       data: {

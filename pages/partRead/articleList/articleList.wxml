@@ -4,10 +4,10 @@
   <block wx:for-items="{{articles}}" wx:key="{{item.author}}">
     <view class="kind-list__item" >
       <navigator url="../article/article?articleId={{item.id}}">
-        <view id="{{item.author}}" class="weui-flex kind-list__item-hd">
-          <view>{{item.title}}</view>
-          <view class="weui-flex__item">{{item.author}}</view>
+        <view id="{{item.author}}" class=" kind-list__item-hd">
+          <view class='item_title'>{{item.title}}</view>
           <image class="kind-list__img" src="{{item.avatar}}"></image>
+          <view class="weui-flex__item"><text class='item_userName'>{{item.author}}</text></view>
         </view>
       </navigator>
     </view>

@@ -33,7 +33,7 @@ Page({
   getArticlesList(articleId, token) {
     var that = this;
     wx.request({
-      url: 'http://localhost/php4Homework/information/getInformation.php',
+      url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       // url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       method: 'POST',
       data: {
