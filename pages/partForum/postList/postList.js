@@ -37,10 +37,6 @@ Page({
         mask: true,
         duration: 1000
       });
-      //一秒后返回顶部
-      setTimeout(function () {
-        that.setData({ scrollTop: 0 })
-      }, 1000)
     } else {
       wx.showToast({
         title: '没有数据啦',
@@ -70,12 +66,15 @@ Page({
       success: function (res) {
         if (res.data.ErrorCode == 0) {
           var length = res.data.content.data.length;
-          if (length < 8) {
-            that.setData({ posts: res.data.content.data, offset: offset,flag: false});
-          } else {
-            that.setData({ posts: res.data.content.data, offset: offset + length });
+          var posts = that.data.posts;
+          for (var i = 0; i < length;i++){
+            posts.push(res.data.content.data[i]);
           }
-
+          if (length < 8) {
+            that.setData({ posts: posts, offset: offset + length,flag: false});
+          } else {
+            that.setData({ posts: posts, offset: offset + length });
+          }
         } else {
           that.setData({ flag: false });
           console.log('请求失败');
@@ -93,9 +92,5 @@ Page({
  */
   onShow: function () {
     this.setData({ flag: true });
-    var offset = this.data.offset;
-    var limit = this.data.limit;
-    var token = app.globalData.token;
-    this.getPosts(offset, limit, token);
   }
 })

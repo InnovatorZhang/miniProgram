@@ -1,7 +1,7 @@
 <!--pages/partForum/postList/postList.wxml-->
 <view>
 
-<scroll-view lower-threshold="2" bindscrolltolower="lower" scroll-y style="height:603px;" scroll-top="{{scrollTop}}">
+<scroll-view lower-threshold="2" bindscrolltolower="lower" scroll-y style="height:100vh;" scroll-top="{{scrollTop}}">
   <block wx:for-items="{{posts}}" wx:key="{{item.username}}">
     <view class="kind-list__item">
       <navigator url="../postReplies/postReplies?postId={{item.id}}">

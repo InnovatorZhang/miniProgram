@@ -1,6 +1,6 @@
 <!--pages/partRead/articleList/articleList.wxml-->
 
-<scroll-view lower-threshold="2" bindscrolltolower="lower" scroll-y style="height:603px;" scroll-top="{{scrollTop}}">
+<scroll-view lower-threshold="2" bindscrolltolower="lower" scroll-y style="height:100vh;" scroll-top="{{scrollTop}}">
   <block wx:for-items="{{articles}}" wx:key="{{item.author}}">
     <view class="kind-list__item" >
       <navigator url="../article/article?articleId={{item.id}}">

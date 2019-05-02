@@ -35,35 +35,8 @@ Page({
       mask: true,
       duration: 1500
     });
-    //一秒后返回顶部
-    setTimeout(function(){
-      that.setData({ scrollTop: 0 })
-    },1000)
     
   },
-  // /**
-  //  * 页面上拉触底事件的处理函数
-  //  */
-  // onReachBottom: function () {
-  //   var newOffset = this.data.offset + 20;
-  //   var limit = this.data.limit;
-  //   var that = this;
-  //   var token = app.globalData.token;
-  //   this.setData({offset:newOffset})
-  //   this.getArticlesList(newOffset,limit,token);
-  //   wx.showToast({
-  //     title: '正在加载数据...',
-  //     icon: 'loading',
-  //     mask: true,
-  //     duration: 1500
-  //   });
-  //   //一秒后返回顶部
-  //   setTimeout(function(){
-  //     that.setData({ scrollTop: 0 })
-  //   },1000)
-  // },
-
-
   /**
    * 联网获取数据
    */
@@ -71,7 +44,6 @@ Page({
     var that = this;
     wx.request({
       url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
-      //url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
       method: 'POST',
       data: {
         "type": 1,
@@ -83,7 +55,12 @@ Page({
       },
       success: function (res) {
         if (res.data.ErrorCode == 0){
-          that.setData({ articles: res.data.content.data });
+          var length = res.data.content.data.length;
+          var articles = that.data.articles;
+          for (var i = 0; i < length; i++) {
+            articles.push(res.data.content.data[i]);
+          }
+          that.setData({ articles: articles });
         }else{
           console.log('请求失败');
         }
