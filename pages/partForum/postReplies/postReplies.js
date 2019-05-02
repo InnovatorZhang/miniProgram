@@ -6,7 +6,9 @@ Page({
    */
   data: {
     postId:1,
-    replies:[]
+    replies:[],
+    reply:'',
+    inputText:''
   },
 
   /**
@@ -15,8 +17,11 @@ Page({
   onLoad: function (options) {
     var postId = this.data.postId;
     console.log("postId is " + options.postId);
-    if (options.postId){
+    if (options.postId) {
       postId = options.postId;
+      this.setData({
+        postId: postId
+      })
     }
     var token = app.globalData.token;
     this.getReplies(token, postId);
@@ -42,6 +47,50 @@ Page({
           that.setData({ replies: res.data.content.data });
         } else {
           console.log('没有回复哦');
+        }
+      }
+    })
+  }
+  ,
+  inputReply(e) {
+    this.setData({
+      reply: e.detail.value
+    })
+  },
+  tapToConfirm() {
+    var postId = this.data.postId;
+    var token = app.globalData.token;
+    var reply = this.data.reply;
+    this.submitReply(postId, reply, token);
+  },
+  /**
+   * 向服务器提交回复
+   */
+  submitReply(postId, reply, token) {
+    var that = this;
+    wx.request({
+      url: 'http://120.77.212.41/MYHTML/php4Homework/forum/getInformation.php',
+      method: 'POST',
+      data: {
+        "type": 2,
+        "content": {
+          "token": token,
+          "content": reply,
+          "postId": postId
+        }
+      },
+      success: function (res) {
+        if (res.data.ErrorCode == 0) {
+          wx.showToast({
+            title: '提交成功',
+          })
+          that.setData({inputText:''});
+          //刷新页面
+          that.getReplies(token, postId);
+        } else {
+          wx.showToast({
+            title: '提交失败',
+          })
         }
       }
     })

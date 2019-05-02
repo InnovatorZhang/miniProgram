@@ -8,8 +8,7 @@
     "pages/partProfile/profile/profile",
     "pages/partForum/postList/postList",
     "pages/partForum/postReplies/postReplies",
-    "pages/partForum/addPost/addPost",
-    "pages/partForum/addReply/addReply"
+    "pages/partForum/addPost/addPost"
   ],
   "window": {
     "backgroundTextStyle": "light",

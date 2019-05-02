@@ -10,4 +10,18 @@
         </view>
     </view>
   </block>
+<view style="height:80rpx"></view>
+  <view class="release" >
+    <input class="text"
+    fixed="true"
+    maxlength="-1"
+    show-confirm-bar="false"
+    cursor-spacing="15"
+    auto-height="true"
+    placeholder="回复"
+    value="{{inputText}}"
+    bindinput='inputReply'>
+    </input>
+    <view class="submit" style='font-size:35rpx' bindtap='tapToConfirm'>发送</view>
+</view>
 

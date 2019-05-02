@@ -3,7 +3,7 @@
   <view class="page__hd">
     <view class="page__title">{{title}}</view>
     <view class="author-Information">
-    <image class="kind-list__img" src="{{avatar}}"></image>
+    <image class="kind-list__img" src="{{avatar}}" style="border-radius: 20px;"></image>
     <view class="page__desc">{{author}}</view>
     </view>
   </view>
