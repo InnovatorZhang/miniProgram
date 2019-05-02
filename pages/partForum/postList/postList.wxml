@@ -1,4 +1,5 @@
 <!--pages/partForum/postList/postList.wxml-->
+<view>
 
 <scroll-view lower-threshold="2" bindscrolltolower="lower" scroll-y style="height:603px;" scroll-top="{{scrollTop}}">
   <block wx:for-items="{{posts}}" wx:key="{{item.username}}">
@@ -18,3 +19,7 @@
     </view>
   </block>
 </scroll-view>
+<view class="add_post">
+<image src='../../../assets/images/add_post.png'  bindtap='addPost'></image>
+</view>
+</view>

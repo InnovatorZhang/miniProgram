@@ -65,3 +65,16 @@
   flex-wrap: wrap;
   padding: 5px;
 }
+.add_post{
+  position:fixed;
+  bottom:0;
+  display:flex;
+  width:100%;
+  justify-content:center;
+}
+
+.add_post image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
