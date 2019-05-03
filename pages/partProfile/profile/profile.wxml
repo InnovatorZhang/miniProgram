@@ -3,6 +3,8 @@
 	<view   class="userinfo">
 		<image class="userinfo-avatar" src="{{ avatar}}" background-size="cover"></image>
 		<text class="userinfo-nickname">{{ userName }}</text>
+    <button class="weui-btn" type="primary" plain="true" disabled="{{isDisabled}}" bindtap="punchsign">打卡签到</button>
+<text>签到次数：{{punchsignTimes}}</text>
 	</view>
 	<view class="info_list">
 		<view class="weui-cells">

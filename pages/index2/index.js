@@ -1,80 +1,71 @@
-// pages/partProfile/profile/profile.js
-const app = getApp();
+//index.js
+//获取应用实例
+const app = getApp()
+
 Page({
   data: {
-    avatar: 'http://120.77.212.41/MYHTML/php4Homework/avatar/default.png',
-    userName: '默认名字',
     isDisabled: false,
-    punchsignTimes: 0,
-    items: [
-      {
-        icon: '../../../assets/images/iconfont-order.png',
-        text: '我的帖子',
-        path: '/pages/order/list/index'
-      },
-      {
-        icon: '../../../assets/images/iconfont-addr.png',
-        text: '我的学校',
-        path: '/pages/address/list/index'
-      },
-      {
-        icon: '../../../assets/images/iconfont-kefu.png',
-        text: '联系客服',
-        path: '15025508295',
-      },
-      {
-        icon: '../../../assets/images/iconfont-help.png',
-        text: '常见问题',
-        path: '/pages/help/list/index',
-      },
-    ],
-    settings: [
-      {
-        icon: '../../../assets/images/iconfont-clear.png',
-        text: '清除缓存',
-        path: '0.0KB'
-      },
-      {
-        icon: '../../../assets/images/iconfont-about.png',
-        text: '关于我们',
-        path: '/pages/about/index'
-      },
-    ]
+    punchsignTimes: 0
   },
-  onLoad(options) {
-    this.setData({ avatar: app.globalData.avatar, userName: app.globalData.userName });
+  /**
+   *
+   */
+  onLoad: function(options) {
     var that = this;
     //检查是否签到了，签过则将按钮不可用
     this.isPunchsigned();
     //获取签到次数
     var token = app.globalData.token;
     this.getPunchsignTimes(token);
+    //修改服务器中用户头像地址,这里等待一秒，因为要等待异步获取的头像地址
+    setTimeout(function(){
+      that.modifyUserAvatar(app.globalData.avatar);
+    },1000)
   },
-  logout() {
-    //退出登陆时跳转到登录界面并清除缓存信息
-    wx.showToast({
-      icon: 'loading',
-      title: '正在注销...',
-      duration: 1000
-    })
-    try {
-      // wx.removeStorageSync('userInfo');
-      wx.clearStorage();
-    } catch (e) {
-      console('GG');
-    }
-    setTimeout(function () {
-      wx.redirectTo({
-        url: '../../partFirst/login/login',
-      })
-    }, 1000)
-  },  /**
+
+  /**
    * 签到，签到之后禁用按钮，在这里向服务器发送签到信息
    */
   punchsign() {
     //获取token
     var token = app.globalData.token;
     this.punchsignToServer(token);
+  },
+  /**
+   * 自拍打卡所用方法
+   */
+  photoPunchsign() {
+    wx.showToast({
+      title: '自拍的代码',
+    });
+    wx.chooseImage({
+      count: 1,
+      sizeType:  'compressed',
+      sourceType: 'camera',
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePath = res.tempFilePaths[0];
+        console.log(tempFilePath);
+      }
+    })
+    //示例代码
+    // wx.chooseImage({
+    //   success(res) {
+    //     const tempFilePaths = res.tempFilePaths
+    //     wx.uploadFile({
+    //       url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+    //       filePath: tempFilePaths[0],
+    //       name: 'file',
+    //       formData: {
+    //         user: 'test'
+    //       },
+    //       success(res) {
+    //         const data = res.data
+    //         // do something
+    //       }
+    //     })
+    //   }
+    // })
   },
   /**
    * 签到所用方法
@@ -90,7 +81,7 @@ Page({
           "token": token
         }
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.ErrorCode == 0) {
           that.setData({
             isDisabled: true
@@ -129,7 +120,7 @@ Page({
           "token": token
         }
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.ErrorCode == 0) {
           that.setData({
             punchsignTimes: res.data.content.data
@@ -157,7 +148,25 @@ Page({
         isDisabled: true
       });
     }
-  }
-
-  
+  },
+/**
+ * 修改用户头像地址
+ */
+  modifyUserAvatar(avatarUrl) {
+    var that = this;
+    wx.request({
+      url: 'http://120.77.212.41/MYHTML/php4Homework/modify/avatar/index.php',
+      method: 'POST',
+      data: {
+        "type": 0,
+        "content": {
+          "avatarUrl": avatarUrl,
+          "token": app.globalData.token
+        },
+        success: function (res) {
+          console.log('头像已修改');
+        }
+      }
+    })
+  },
 })

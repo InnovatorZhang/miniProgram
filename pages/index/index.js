@@ -1,155 +1,127 @@
-//index.js
-//获取应用实例
-const app = getApp()
-
+// pages/index2/index2.js
+const app = getApp();
 Page({
-  data: {
-    isDisabled: false,
-    punchsignTimes: 0
-  },
+
   /**
-   *
+   * 页面的初始数据
+   */
+  data: {
+    imgUrls: ['../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg', '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg',
+      '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg'
+    ],
+    postion: -1,
+    duration: 0,
+    poster: 'http://120.77.212.41/MYHTML/music/images/彩虹.jpg',
+    name: '彩虹',
+    author: '周杰伦',
+    src: 'http://120.77.212.41/MYHTML/music/周杰伦 - 彩虹.mp3',
+    musicList: [],
+    isPlaying: false,
+    percent: 0,
+    currentTime: '00:00',
+    duration: "00:00"
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     var that = this;
-    //检查是否签到了，签过则将按钮不可用
-    this.isPunchsigned();
-    //获取签到次数
-    var token = app.globalData.token;
-    this.getPunchsignTimes(token);
+    this.getMusicList();
+    
     //修改服务器中用户头像地址,这里等待一秒，因为要等待异步获取的头像地址
-    setTimeout(function(){
+    setTimeout(function () {
       that.modifyUserAvatar(app.globalData.avatar);
-    },1000)
+    }, 1000)
   },
-
-  /**
-   * 签到，签到之后禁用按钮，在这里向服务器发送签到信息
-   */
-  punchsign() {
-    //获取token
-    var token = app.globalData.token;
-    this.punchsignToServer(token);
+  onReady(e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
   },
-  /**
-   * 自拍打卡所用方法
-   */
-  photoPunchsign() {
-    wx.showToast({
-      title: '自拍的代码',
-    });
-    wx.chooseImage({
-      count: 1,
-      sizeType:  'compressed',
-      sourceType: 'camera',
-      success(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePath = res.tempFilePaths[0];
-        console.log(tempFilePath);
-      }
-    })
-    //示例代码
-    // wx.chooseImage({
-    //   success(res) {
-    //     const tempFilePaths = res.tempFilePaths
-    //     wx.uploadFile({
-    //       url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-    //       filePath: tempFilePaths[0],
-    //       name: 'file',
-    //       formData: {
-    //         user: 'test'
-    //       },
-    //       success(res) {
-    //         const data = res.data
-    //         // do something
-    //       }
-    //     })
-    //   }
-    // })
-  },
-  /**
-   * 签到所用方法
-   */
-  punchsignToServer(token) {
-    var that = this;
-    wx.request({
-      url: 'http://120.77.212.41/MYHTML/php4Homework/punchsign/index.php',
-      method: 'POST',
-      data: {
-        "type": 0,
-        "content": {
-          "token": token
-        }
-      },
-      success: function(res) {
-        if (res.data.ErrorCode == 0) {
-          that.setData({
-            isDisabled: true
-          });
-          wx.setStorageSync("punchsign", true);
-          //获取当前时间戳
-          var timeStamp = Date.parse(new Date())
-          console.log(new Date());
-          //这里是毫秒为单位的
-          var expiretime = timeStamp + 72000000;
-          //二十小时后过期
-          wx.setStorageSync("expiretime", expiretime);
-          wx.showToast({
-            title: '签到成功',
-          });
-          that.setData({
-            punchsignTimes: res.data.content.data
-          })
-        } else {
-          console.log('请求失败');
-        }
-      }
+  nextMusic() {
+    var postion = (this.data.postion + 1) % this.data.musicList.length;
+    this.setData({
+      name: this.data.musicList[postion].name,
+      author: this.data.musicList[postion].author,
+      src: this.data.musicList[postion].src,
+      poster: this.data.musicList[postion].picture,
+      postion: postion
     })
   },
-  /**
-   * 获取已签到次数
-   */
-  getPunchsignTimes(token) {
-    var that = this;
-    wx.request({
-      url: 'http://120.77.212.41/MYHTML/php4Homework/punchsign/index.php',
-      method: 'POST',
-      data: {
-        "type": 1,
-        "content": {
-          "token": token
-        }
-      },
-      success: function(res) {
-        if (res.data.ErrorCode == 0) {
-          that.setData({
-            punchsignTimes: res.data.content.data
-          })
-        } else {
-          console.log('请求失败');
-        }
-      }
+  preMusic() {
+    var postion = (this.data.postion + this.data.musicList.length - 1) % this.data.musicList.length;
+    this.setData({
+      name: this.data.musicList[postion].name,
+      author: this.data.musicList[postion].author,
+      src: this.data.musicList[postion].src,
+      poster: this.data.musicList[postion].picture,
+      postion: postion
     })
   },
-  /**
-   * 检查今天是否签到过了
-   */
-  isPunchsigned() {
-    //这里查看签到按钮今天是否已经按了
-    var expiretime = wx.getStorageSync("expiretime") || 0;
-    var isDisabled = wx.getStorageSync("punchsign");
-    var timestamp = Date.parse(new Date());
-    if (timestamp > expiretime) {
-      this.setData({
-        isDisabled: false
-      });
+  pauseAndPlay() {
+    var isPlaying = this.data.isPlaying;
+    if (!isPlaying) {
+      this.audioCtx.play();
     } else {
-      this.setData({
-        isDisabled: true
-      });
+      this.audioCtx.pause();
     }
+    this.setData({
+      isPlaying: !isPlaying
+    })
   },
-/**
+  /**
+   * 获取歌曲列表
+   */
+  // getMusicList() {
+  //   var that = this;
+  //   wx.request({
+  //     url: 'http://127.0.0.1/php4Homework/information/getInformation.php',
+  //     method: 'POST',
+  //     data: {
+  //       "type": 5,
+  //       "content": {
+  //         "token": "6924b9d8863057b0e964b79e487d6421e8459847"
+  //       }
+  //     },
+  //     success: function (res) {
+  //       if (res.data.ErrorCode == 0) {
+  //         that.setData({ musicList: res.data.content.data })
+  //       }
+  //     }
+  //   })
+  // }
+  getMusicList() {
+    var that = this;
+    wx.request({
+      url: 'http://120.77.212.41/MYHTML/php4Homework/information/getInformation.php',
+      method: 'POST',
+      data: {
+        "type": 5,
+        "content": {
+          "token": "f05795d95e20b009e85c69b1dbff7772f4505448"
+        }
+      },
+      success: function(res) {
+        if (res.data.ErrorCode == 0) {
+          that.setData({
+            musicList: res.data.content.data
+          })
+        }
+      }
+    })
+  },
+  seek() {
+    this.audioCtx.seek(178);
+  },
+  getTime(e) {
+    var duration = Math.ceil((e.detail.duration / 60) - 1) + ':' + Math.ceil(e.detail.duration % 60)
+    this.setData({
+      currentTime: e.detail.currentTime,
+      duration: duration,
+      percent: (e.detail.currentTime / e.detail.duration) * 100
+    });
+  },
+  /**
  * 修改用户头像地址
  */
   modifyUserAvatar(avatarUrl) {
@@ -167,6 +139,5 @@ Page({
           console.log('头像已修改');
         }
       }
-    })
-  },
+    })}
 })
