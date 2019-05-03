@@ -29,8 +29,8 @@
       </view>
       <view class='tool_row2'>
         <view class='tool_down'>
-          <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_down'></image>
-          <text class='tool_name' bindtap='tap_down'>资料库</text>
+          <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_download'></image>
+          <text class='tool_name' bindtap='tap_download'>资料库</text>
         </view>
         <view class='tool_more'>
           <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_more'></image>
@@ -47,7 +47,8 @@
      block-size="5"
      style='height:20rpx;'
      min="0" 
-     max="100" 
+     max="100"
+     bindchange="changeProgress" 
      value= "{{percent}}"/>
       <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" bindended="nextMusic" bindtimeupdate="getTime" controls></audio>
       <view class='music_last'>

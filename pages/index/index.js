@@ -9,8 +9,9 @@ Page({
     imgUrls: ['../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg', '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg',
       '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg'
     ],
+    count:0,
     postion: -1,
-    duration: 0,
+    durationTime: 0,
     poster: 'http://120.77.212.41/MYHTML/music/images/彩虹.jpg',
     name: '彩虹',
     author: '周杰伦',
@@ -98,7 +99,7 @@ Page({
       data: {
         "type": 5,
         "content": {
-          "token": "f05795d95e20b009e85c69b1dbff7772f4505448"
+          "token": app.globalData.token
         }
       },
       success: function(res) {
@@ -110,16 +111,36 @@ Page({
       }
     })
   },
-  seek() {
-    this.audioCtx.seek(178);
+  /**
+   * 调整进度
+   */
+  seek(value) {
+    this.audioCtx.seek(value);
   },
+  /**
+   * 拖动进度条改变播放进度
+   */
+  changeProgress(e){
+    console.log(Math.ceil(e.detail.value * this.data.durationTime / 100))
+    this.audioCtx.seek(Math.ceil(e.detail.value * this.data.durationTime / 100));
+    this.setData({percent: e.detail.value});
+  },
+  /**
+   * 获取歌曲的时长和当前时间
+   */
   getTime(e) {
-    var duration = Math.ceil((e.detail.duration / 60) - 1) + ':' + Math.ceil(e.detail.duration % 60)
-    this.setData({
-      currentTime: e.detail.currentTime,
-      duration: duration,
-      percent: (e.detail.currentTime / e.detail.duration) * 100
-    });
+    this.data.count = this.data.count +1;
+    //减缓一下进度条刷新速度
+    if (this.data.count%4==0){
+      var duration = Math.ceil((e.detail.duration / 60) - 1) + ':' + Math.ceil(e.detail.duration % 60)
+      this.setData({
+        currentTime: e.detail.currentTime,
+        duration: duration,
+        durationTime: e.detail.duration,
+        percent: (e.detail.currentTime / e.detail.duration) * 100
+      });
+    }
+
   },
   /**
  * 修改用户头像地址
@@ -139,5 +160,13 @@ Page({
           console.log('头像已修改');
         }
       }
-    })}
+    })},
+    /**
+     * 进入资料下载界面
+     */
+  tap_download(){
+    wx.navigateTo({
+      url: '../partDownload/partDownload'
+    })
+  }
 })

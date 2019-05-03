@@ -1,0 +1,14 @@
+<!--pages/partDownload/partDownload.wxml-->
+<progress percent="{{persent}}" style="position:fixed;top:0;width:100%">{{persent}}%</progress>
+<block wx:for-items="{{downloadList}}">
+  <view class="kind-list__item">
+    <view class="weui-flex kind-list__item-hd">
+      <view class="item_vertical">
+        <view class="item_post">{{item.name}}</view>
+      </view>
+      <view class="item_vertical item_right">
+        <image id="{{item.downloadpath}}" bindtap="clickToDownload" class="kind-list__img" src="../../assets/images/download.png"></image>
+      </view>
+    </view>
+  </view>
+</block>
