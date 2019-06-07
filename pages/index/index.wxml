@@ -52,13 +52,13 @@
      value= "{{percent}}"/>
       <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" bindended="nextMusic" bindtimeupdate="getTime" controls></audio>
       <view class='music_last'>
-        <image src='../../assets/images/iconfont-addr.png' class='last_img' bindtap='preMusic'>上一首</image>
+        <image src='../../assets/images/pre_button.png' class='last_img' bindtap='preMusic'>上一首</image>
       </view>
       <view class='music_pause'>
-        <image src='../../assets/images/iconfont-addr-default.png' class='pause_img' bindtap='pauseAndPlay'>暂停/继续</image>
+        <image src='../../assets/images/pause.jpg' class='pause_img' bindtap='pauseAndPlay'>暂停/继续</image>
       </view>
       <view class='music_next'>
-        <image src='../../assets/images/iconfont-addr.png' class='next_img' bindtap='nextMusic'>下一曲</image>
+        <image src='../../assets/images/next_button.png' class='next_img' bindtap='nextMusic'>下一曲</image>
       </view>
       <text>时长:{{duration}}</text>
     </view>
