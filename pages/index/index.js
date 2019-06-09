@@ -47,7 +47,8 @@ Page({
       src: this.data.musicList[postion].src,
       poster: this.data.musicList[postion].picture,
       postion: postion
-    })
+    });
+    console.log('上一首切换：' + this.data.musicList[postion].name);
   },
   preMusic() {
     var postion = (this.data.postion + this.data.musicList.length - 1) % this.data.musicList.length;
@@ -57,7 +58,8 @@ Page({
       src: this.data.musicList[postion].src,
       poster: this.data.musicList[postion].picture,
       postion: postion
-    })
+    });
+    console.log('下一首切换：' + this.data.musicList[postion].name);
   },
   pauseAndPlay() {
     var isPlaying = this.data.isPlaying;
@@ -121,7 +123,7 @@ Page({
    * 拖动进度条改变播放进度
    */
   changeProgress(e){
-    console.log(Math.ceil(e.detail.value * this.data.durationTime / 100))
+    console.log('当前秒数:'+Math.ceil(e.detail.value * this.data.durationTime / 100))
     this.audioCtx.seek(Math.ceil(e.detail.value * this.data.durationTime / 100));
     this.setData({percent: e.detail.value});
   },
