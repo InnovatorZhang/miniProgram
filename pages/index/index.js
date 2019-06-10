@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: ['../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg', '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg',
-      '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg'
+    imgUrls: [ '../../assets/images/ad1.png',
+      '../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg',
+      '../../assets/images/ad2.jpg'
     ],
     count:0,
     postion: -1,

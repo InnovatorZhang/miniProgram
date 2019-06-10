@@ -12,28 +12,28 @@
   </view>
   <!-- 每日一句 及各种功能入口-->
   <view class='index_head'>
-    <image src='../../assets/images/1185610181AD24DAB537F204F82E9D74.jpg' class='head_img'></image>
+    <image src='../../assets/images/back.jpg' class='head_img'></image>
     <text class='index_cen'>
   每日一句
   </text>
     <view class='index_tool'>
       <view class='tool_row1'>
         <view class='tool_class'>
-          <image bindtap='tap_class' src='../../assets/images/iconfont-about.png' class='tool_img'></image>
+          <image bindtap='tap_class' src='../../assets/images/entrance1.png' class='tool_img'></image>
           <text class='tool_name' bindtap='tap_class'>名师指导</text>
         </view>
         <view class='tool_store'>
-          <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_store'></image>
+          <image src='../../assets/images/entrance3.png' class='tool_img' bindtap='tap_store'></image>
           <text class='tool_name' bindtap='tap_store'>商场</text>
         </view>
       </view>
       <view class='tool_row2'>
         <view class='tool_down'>
-          <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_download'></image>
+          <image src='../../assets/images/entrance2.png' class='tool_img' bindtap='tap_download'></image>
           <text class='tool_name' bindtap='tap_download'>资料库</text>
         </view>
         <view class='tool_more'>
-          <image src='../../assets/images/iconfont-about.png' class='tool_img' bindtap='tap_more'></image>
+          <image src='../../assets/images/entrance4.png' class='tool_img' bindtap='tap_more'></image>
           <text class='tool_name' bindtap='tap_more'>更多</text>
         </view>
       </view>

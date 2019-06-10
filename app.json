@@ -22,26 +22,26 @@
       {
         "pagePath": "pages/index/index",
         "text": "主页",
-        "iconPath": "/assets/images/icon_nav_special.png",
-        "selectedIconPath": "/assets/images/icon_nav_special.png"
+        "iconPath": "/assets/images/main-page.png",
+        "selectedIconPath": "/assets/images/main-page.png"
       },
       {
         "pagePath": "pages/partRead/articleList/articleList",
         "text": "考研经验分享",
-        "iconPath": "/assets/images/icon_nav_widget.png",
-        "selectedIconPath": "/assets/images/icon_nav_widget.png"
+        "iconPath": "/assets/images/passage-page.png",
+        "selectedIconPath": "/assets/images/passage-page.png"
       },
       {
         "pagePath": "pages/partForum/postList/postList",
         "text": "讨论区",
-        "iconPath": "/assets/images/iconfont-weixin.png",
-        "selectedIconPath": "/assets/images/iconfont-weixin.png"
+        "iconPath": "/assets/images/discussArea.png",
+        "selectedIconPath": "/assets/images/discussArea.png"
       },
       {
         "pagePath": "pages/partProfile/profile/profile",
         "text": "我的简介",
-        "iconPath": "/assets/images/iconfont-user.png",
-        "selectedIconPath": "/assets/images/iconfont-user-active.png"
+        "iconPath": "/assets/images/mine-page.png",
+        "selectedIconPath": "/assets/images/mine-page.png"
       }
     ]
   }
